@@ -14,4 +14,14 @@ test('test', async ({ page }) => {
   await page.getByRole('link', { name: 'Home' }).click();
   await page.getByRole('link', { name: 'Click' }).click();
   await page.getByRole('button', { name: 'Button That Ignores DOM Click' }).click();
+
+
+// uso de locator con selectores
+
+  await page.locator('#title'); // por id
+  await page.locator('.alert'); // por clase
+  await page.locator('a.navbar-brand').click(); // mixtos: etiqueta + clase
+
+
 });
+
