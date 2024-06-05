@@ -4,20 +4,13 @@ test('Primer Reto de Automatización con Playwright', async ({ page }) => {
 
   await page.goto('https://automationexercise.com/');
 
-  await page.locator('.material-icons card_travel').click()
+  await expect (page.locator('.overlay-content:has-text("Rs. 500")').nth(0)).toBeVisible();
 
-  await expect(page).toHaveURL('https://automationexercise.com/products')
+  // hacer click en el add to cart del modal
+  await page.locator('.single-products .productinfo:has-text("Blue Top") a[data-product-id="1"]').first().click();
 
-  await page.mouse.down()
+  await expect(page.locator('#cartModal')).toBeVisible();
 
-  await page.locator('.fa fa-plus-square').click()
-  await expect(page).toHaveURL('https://automationexercise.com/product_details/1')
-
-  await page.locator('.btn btn-default cart').click()
-  await expect(page.locator('.modal-content')).toBeVisible()
-
-  await page.locator('btn btn-success close-modal btn-block').click()
-  await expect(page).toHaveURL('https://automationexercise.com/product_details/1')
-  await expect(page.locator('.modal-content')).toBeHidden()
+  await page.locator('div.modal-footer button.close-modal').click();
 
 });
