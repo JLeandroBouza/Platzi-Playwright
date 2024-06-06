@@ -11,6 +11,7 @@ test('Primer Reto de Automatización con Playwright', async ({ page }) => {
 
   await expect(page.locator('#cartModal')).toBeVisible();
 
+  await page.pause(); // pausa el test en este punto
   await page.locator('div.modal-footer button.close-modal').click();
 
 });
